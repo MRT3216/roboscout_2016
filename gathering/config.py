@@ -1,7 +1,9 @@
 #### config, python syntax
-
+# this is mostly for the server, but the client needs to import it for a few things too
 
 DATABASE = "data/data.db"
+
+LOGFILE = "gather-server.log"
 
 """
 stuff i took out:

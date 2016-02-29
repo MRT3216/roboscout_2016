@@ -1,6 +1,6 @@
 ## webserver for data input
 import os,sys
-fd = open('config.py','w');fd.write(open('../config.py','r').read());fd.close()
+fd = open('config.py','w');fd.write(open('../config.py','r').read());fd.close() ## wish this were easier
 
 from flask import Flask,redirect,request,make_response,render_template
 from config import *
@@ -28,6 +28,9 @@ def submitpage():
 	for i in DSCH_SHORT:
 		dat.append(request.form.get(i,'-1'))
 	print zip(DSCH_SHORT,dat) ## log this maybe?
+	fd = open(LOGFILE,'a')
+	fd.write(repr(zip(DSCH_SHORT,dat)) + '\n')
+	fd.close()
 	conn = sqlite3.connect(DATABASE)
 	c = conn.cursor()
 	c.execute('INSERT INTO matches VALUES ({})'.format(','.join('?' for i in dat)),dat)
