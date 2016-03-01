@@ -39,30 +39,77 @@ def analyzeteam(num):
 	c = conn.cursor()
 	c.execute('SELECT * FROM matches WHERE teamnum=?',(num,))
 	matchdata = c.fetchall() # raw
+	if len(matchdata) == 0:
+		print "ERROR: team {} has no match data".format(num)
 	matches = [{i:j for (i,j) in zip(DSCH_SHORT,k)} for k in matchdata]
 	teamobj.matchdata = matches
 	defense_speed_raw = {i:0 for i in defs}
+	defense_count = {i:0 for i in defs}
 	autondefenses = {i:0 for i in defs}
 	teamobj.num_matches = len(matches)
 	lowgoal_total = 0
 	highgoal_total = 0
 	highgoal_miss = 0
+
+	auton_high = 0
+	auton_low = 0
+	auton_boulders = 0
+	auton_reaches = 0
+	auton_breaches = 0
+
+	tower_challenge = 0
+	tower_scale_partial = 0
+	tower_scale = 0
+
 	for i in matches:
 		## figure out their best defenses
 		for d in defs:
 			count = i.get(d+'_crosscount',0)
 			speed = i.get(d+'_def','what')
-			sm = {u'slow':1,u'fast':2}.get(speed,0) # speed multiplier
+			sm = {u'slow':1,u'fast':2,u'assist':0.5,u'alone':3}.get(speed,0) # speed multiplier
 			defense_speed_raw[d] += count*sm
+			defense_count[d] += count
 		## also think about auton defenses
 		autondefense = i.get('autonbreach_ans','none')
 		if str(autondefense) in defs:
 			defense_speed_raw[str(autondefense)] += 5
 			autondefenses[str(autondefense)] += 1
-		### Offense
+			defense_count[str(autondefense)] += 1
+		## offense
 		lowgoal_total += i.get('lowshoot_count',0)
 		highgoal_total += i.get('highshoot_a_count',0)
 		highgoal_miss += i.get('highshoot_m_count',0)
+		## auton
+		if i.get('autonboulder_ans','no') == 'yes':
+			auton_boulders += 1
+		if i.get('autonreach_ans','no') == 'yes':
+			auton_reaches += 1
+		if i.get('autonbreach_ans','none') != 'none':
+			auton_breaches += 1
+		auton_high += i.get('autonhigh_count',0)
+		auton_low += i.get('autonlow_count',0)
+		## endgame stuff
+		if i.get('upramp_ans','no') == 'yes':
+			tower_challenge += 1
+		if i.get('climb_ans','no') == 'partial':
+			tower_scale_partial += 1
+		elif i.get('climb_ans','no') == 'full':
+			tower_scale += 1
+
+	teamobj.auton_boulders = auton_boulders
+	teamobj.auton_reaches = auton_reaches
+	teamobj.auton_breaches = auton_breaches
+	teamobj.auton_low = auton_low
+	teamobj.auton_high = auton_high
+
+	teamobj.tower_challenge = tower_challenge
+	teamobj.tower_scale_partial = tower_scale_partial
+	teamobj.tower_scale = tower_scale
+	if tower_scale + tower_scale_partial != 0:
+		teamobj.tower_scale_prec = tower_scale / float(tower_scale + tower_scale_partial) * 100
+	else:
+		teamobj.tower_scale_prec = 0
+
 	teamobj.lowgoal_total = lowgoal_total
 	if len(matches) != 0:
 		teamobj.lowgoal_avg = lowgoal_total / float(len(matches))
@@ -79,6 +126,7 @@ def analyzeteam(num):
 	## find the prevalance of teleop defenses
 	teamobj.defense_speed_raw = defense_speed_raw
 	teamobj.defenses_auton = autondefenses
+	teamobj.defense_count = defense_count
 	maxdef = sorted(defense_speed_raw.values())[-1]
 	if maxdef != 0:
 		defense_speed = {d:(i/float(maxdef))*100 for (d,i) in zip(defense_speed_raw.keys(),defense_speed_raw.values())}

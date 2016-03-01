@@ -105,7 +105,7 @@ QUESTIONS2 = [
 	question("(AUTON) Reached a defense",'autonreach'),
 	question("(AUTON) Crossed a defense",'autonbreach',False,['none','portcullis','cheval','moat','ramparts','drawbridge','sallyport','rockwall','roughterrain','lowbar']),
 	question("(AUTON) Low goal scores",'autonlow',True,[]),
-	question("(AUTON) High goal scores",'autonhigh_m',True,[])
+	question("(AUTON) High goal scores",'autonhigh',True,[])
 ]
 
 ### not included for now
