@@ -1,0 +1,10 @@
+Just a quick overview of these programs:
+
+python team.py <num>
+	single team analysis
+
+python alliance.py <num1>,<num2>,<num3>...
+	analyze any number of teams as an alliance
+
+python match.py <red1>,<red2>,<red3>... <blue1>,<blue2>,<blue3>...
+	analyze two alliances against eachother
