@@ -48,3 +48,73 @@ climbed tower 1 times (50.0% of matches)
 partially climbed tower 1 times (50.0% of matches)
 succeeded climbing tower 50.0% of attempts
 ```
+
+Some planning I did a while ago about this app:
+
+- gets data like number of goal crossings, crossing speed, boulder stats, challenge and capture of tower, auton stats, and final game score
+
+- run on a raspberry pi
+
+- backpack in the stands with several ethernets coming out of it:
+
+- contains raspberry pi, router, power source, and some communication method back to pit area
+
+- maybe we can run an ac power cord, if not, big multirotor batteries with a switching power supply
+
+- need to find an 8-port router for linking the laptops together
+
+- so there are 6 laptops linked to this hub, all accessing the raspberry pi’s webserver
+
+- the webserver serves a page to enter various data about the specific bot
+
+- each scouter will fill out one form per match, with 6 computers being able to fill out the data on the whole alliance (including our own bot when we’re there)
+
+- the raspberry pi will then periodically sync the database back to the pit area computer (a more powerful one), which will do a bunch of analysis on it
+
+- alternately, there is a 7th laptop at the scouting camp that does all the analysis, and the drive team confers with it before the match (no long-distance syncing needed)
+
+- Match-based data for planning:
+
+	- {opposing, partner} alliance strengths and weaknesses: outer works defense crossing ablilties, defense, offense low and high
+
+	- suggested roles for us and our teammates’ bots (defense, offense low, offense high, supply), best opposing strategy
+
+	- suggested outerworks defense selections
+
+	- suggested robot placement for auton
+
+	- match history overview for each bot
+
+	- estimated outcome
+
+- Robot-based data:
+
+	- strengths and weaknesses, best and worst roles
+
+	- best opposing strategy
+
+	- past match preformance
+
+- Finals selection suggestion data:
+
+	- (this could take a while to compute, we’d run this analysis between quals and final selections, need to figure out how fast it can be done)
+
+	- top teams in general
+
+	- top teams that pair with our skills (or the skills of any given bot)
+
+	- top alliances (selected for most skills)
+
+	- what the computer will do is run every single possible combination of teams in alliances of 3, and compare these results numerically
+
+- easy way to view and edit historic data in case a scouter makes a mistake
+
+- possibility of sharing this data with other teams?
+
+- of course we’d share upcoming match analysis with our alliance mates
+
+- maybe share finalist selection suggestions?
+
+- pit scouting is better suited for nic’s app or paper
+
+- use pit scouting and practice field scouting until we have enough of this data to go off of
