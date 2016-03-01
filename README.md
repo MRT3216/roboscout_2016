@@ -5,7 +5,7 @@ I don't really have time to document this right now much...
 
 Data acquisition:
 
-![data acquisition screen](https://github.com/red-green/roboscout_2016/tree/master/gathering/templates/layout.png)
+![data acquisition screen](https://github.com/red-green/roboscout_2016/blob/master/gathering/templates/layout.png?raw=true)
 
 Team analysis (sample random data) [not even close to done yet]:
 
