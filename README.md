@@ -1,13 +1,22 @@
 roboscout
 -------
 
-I don't really have time to document this right now much...
 
-Data acquisition:
+How to use it:
+
+- go to the `gathering` folder and run `python main.py` to start the gathering server.
+- any computer that connects to the IP address of the machine running that server on port 5000 will see the data gathering screen below (if the ip is `10.0.1.25`, then type `10.0.1.25:5000` into your browser)
+- use the gathering page to submit data on each team (you can safely ignore final score for now)
+- once you have gathered data and want to analyze it, copy `gathering/data/data.db` into `analysis/data/data.db` using whatever method you see fit: airsync, rsync, just manual copying, symlinking, etc.
+- then in the analysis folder, there are several scripts (only one of them works however):
+- to analyze a team: `python team.py ####` where __####__ is the number of a team you want to analyze. a bunch of data will be printed out, similar to the output below.
+
+
+__Data acquisition:__
 
 ![data acquisition screen](https://github.com/red-green/roboscout_2016/blob/master/gathering/templates/layout.png?raw=true)
 
-Team analysis (sample random data) [not even close to done yet]:
+__Team analysis__ (sample random data) [not even close to done yet]:
 
 ```
 $ python team.py 4334
@@ -83,5 +92,5 @@ Some planning I did a while ago about this app:
 - possibility of sharing this data with other teams?
 - of course we’d share upcoming match analysis with our alliance mates
 - maybe share finalist selection suggestions?
-- pit scouting is better suited for nic’s app or paper
+- pit scouting is better suited for another app or paper
 - use pit scouting and practice field scouting until we have enough of this data to go off of
