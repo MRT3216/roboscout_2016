@@ -73,3 +73,7 @@ target/
 
 # pyenv
 .python-version
+
+# Additional python things
+data.db
+*.pyc

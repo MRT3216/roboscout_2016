@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>RoboScout</title>
-	<style type='text/css'>
+	<style>
 	body {
 		font-family: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
 		font-size: 7pt;
@@ -23,6 +23,7 @@
 
 	input[type='radio'] {
 		transform: scale(2);
+        margin-top: 10px;
 	}
 
 	input[type='button'] {
@@ -61,7 +62,7 @@
 		height: 170px;
 	}
 	</style>
-	<script type='text/javascript'>
+	<script>
 		var confirmOnPageExit = function (e) {
 		e = e || window.event;
 		var message = 'Are you sure you want to exit?';
@@ -80,38 +81,32 @@
 						<tr>
 							<td>
 								Match number:
-								<input type='number' name='matchnum' value='0' min='0' max='10000'/>
+								<input type='number' name='matchnum' value='' min='0' max='10000'>
 							</td>
 							<td>
 								Team number:
-								<input type='number' name='teamnum' value='0' min='0' max='10000'/>
+								<input type='number' name='teamnum' value='' min='0' max='10000'>
 							</td>
 							<td>
 								Red score:
-								<input type='number' name='score_red' value='0' min='0' max='10000'/>
+								<input type='number' name='score_red' value='' min='0' max='10000'>
 							</td>
 							<td>
 								Blue score:
-								<input type='number' name='score_blue' value='0' min='0' max='10000'/>
-							</td>
-							<!--<td>
-								Match scouting
-								<input type='radio' name='scout_type' value='match' checked/>
-								-- Pit scouting (ignore the counters)
-								<input type='radio' name='scout_type' value='pit'/>
-							</td>-->
-							<td>
-								<input type='submit' value='Submit!'/>
+								<input type='number' name='score_blue' value='' min='0' max='10000'>
 							</td>
 							<td>
-								<input type='reset' value='Reset'/>
+								<input type='submit' value='Submit!'>
+							</td>
+							<td>
+								<input type='reset' value='Reset'>
 							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
-		<hr/>
+		<hr>
 		<table>
 			<!-- this row contains all the defenses -->
 			<tr>
@@ -125,7 +120,7 @@
 						</tr>
 						<tr class='defcon'>
 							<td>
-								<img class='defense' src='/static/{{ defense.did }}.png'/>
+								<img class='defense' src='/static/{{ defense.did }}.png'>
 							</td>
 						</tr>
 						<tr>
@@ -134,13 +129,13 @@
 									<table>
 										<tr>
 											<td>
-												<input type='button' value='-' onclick='document.getElementById("{{defense.did}}_count").value = Math.max(parseInt(document.getElementById("{{defense.did}}_count").value)-1,0)'/>
+												<input type='button' value='-' onclick='document.getElementById("{{defense.did}}_count").value = Math.max(parseInt(document.getElementById("{{defense.did}}_count").value)-1,0)'>
 											</td>
 											<td>
-												<input class='counter' type='number' value='0' min='0' max='1000' name='{{defense.did}}_crosscount' id='{{defense.did}}_count' readonly/>
+												<input class='counter' type='number' value='0' min='0' max='1000' name='{{defense.did}}_crosscount' id='{{defense.did}}_count' readonly>
 											</td>
 											<td>
-												<input type='button' value='+' onclick='document.getElementById("{{defense.did}}_count").value = Math.min(parseInt(document.getElementById("{{defense.did}}_count").value)+1,1000)'/>
+												<input type='button' value='+' onclick='document.getElementById("{{defense.did}}_count").value = Math.min(parseInt(document.getElementById("{{defense.did}}_count").value)+1,1000)'>
 											</td>
 										</tr>
 									</table>
@@ -154,8 +149,8 @@
 										{% for ans in defense.answers %}
 										<td>
 											<center>
-												{{ ans }}<br/>
-												<input type='radio' name='{{ defense.did }}_def' value='{{ ans }}' {% if ans == defense.answers[0] %} checked {% endif %}/>
+												{{ ans }}<br>
+												<input type='radio' name='{{ defense.did }}_def' value='{{ ans }}' {% if ans == defense.answers[0] %} checked {% endif %}>
 											</center>
 										</td>
 										{% endfor %}
@@ -169,7 +164,7 @@
 			</tr>
 		</table>
 		{% for questionl in questions %}
-		<hr/>
+		<hr>
 		<table>
 			<tr>
 				{% for quest in questionl %}
@@ -189,8 +184,8 @@
 										{% for ans in quest.answers %}
 										<td>
 											<center>
-												{{ ans }}<br/>
-												<input type='radio' name='{{ quest.qid }}_ans' value='{{ ans }}' {% if ans == quest.answers[0] %} checked {% endif %}/>
+												{{ ans }}<br>
+												<input type='radio' name='{{ quest.qid }}_ans' value='{{ ans }}' {% if ans == quest.answers[0] %} checked {% endif %}>
 											</center>
 										</td>
 										{% endfor %}
@@ -205,13 +200,13 @@
 									<table>
 										<tr>
 											<td>
-												<input type='button' value='-' onclick='document.getElementById("{{quest.qid}}_count").value = Math.max(parseInt(document.getElementById("{{quest.qid}}_count").value)-1,0)'/>
+												<input type='button' value='-' onclick='document.getElementById("{{quest.qid}}_count").value = Math.max(parseInt(document.getElementById("{{quest.qid}}_count").value)-1,0)'>
 											</td>
 											<td>
-												<input class='counter' type='number' value='0' min='0' max='1000' name='{{quest.qid}}_count' id='{{quest.qid}}_count' readonly/>
+												<input class='counter' type='number' value='0' min='0' max='1000' name='{{quest.qid}}_count' id='{{quest.qid}}_count' readonly>
 											</td>
 											<td>
-												<input type='button' value='+' onclick='document.getElementById("{{quest.qid}}_count").value = Math.min(parseInt(document.getElementById("{{quest.qid}}_count").value)+1,1000)'/>
+												<input type='button' value='+' onclick='document.getElementById("{{quest.qid}}_count").value = Math.min(parseInt(document.getElementById("{{quest.qid}}_count").value)+1,1000)'>
 											</td>
 										</tr>
 									</table>
