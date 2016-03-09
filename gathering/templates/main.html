@@ -2,6 +2,7 @@
 <head>
 	<title>RoboScout</title>
 	<style>
+
 * {
     margin: 0;
     box-sizing: border-box;
@@ -23,7 +24,7 @@ hr {
 }
 input[type='radio'] {
     transform: scale(2);
-    margin-top: 10px;
+    margin: 10px 0;
 }
 input[type='button'], input[type='submit'], input[type='reset'] {
     line-height: 0;
@@ -36,7 +37,7 @@ input[type='button'], input[type='submit'], input[type='reset'] {
 }
 input[type='button'] {
     height: 122%;
-    width: 25px;
+    width: 30px;
     font-size: 1.5em;
 }
 input[type='number'] {
@@ -68,10 +69,10 @@ img {
 	</style>
 	<script>
 		var confirmOnPageExit = function (e) {
-		e = e || window.event;
-		var message = 'Are you sure you want to exit?';
-		if (e) { e.returnValue = message; }
-		return message;
+    		e = e || window.event;
+    		var message = 'Are you sure you want to exit?';
+    		if (e) { e.returnValue = message; }
+    		return message;
 		};
 		//window.onbeforeunload = confirmOnPageExit;
 	</script>
