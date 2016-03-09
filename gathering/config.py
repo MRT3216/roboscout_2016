@@ -114,5 +114,5 @@ QUESTIONS3 = [
 	question("Winning alliance",'win_alliance',False,['red','blue']),
 	question("Red RP (excluding winning bonus)",'ranking_red',True,[]),
 	question("Blue RP (excluding winning bonus)",'ranking_blue',True,[]),
-	question("Percentage of alliance's work",'robot_work',False,['0%','1-33%','33-66%','66-99%','basically all of it'])
+	question("Precentage of alliance's work",'robot_work',False,['0%','1-33%','33-66%','66-99%','basically all of it'])
 ]

@@ -2,65 +2,69 @@
 <head>
 	<title>RoboScout</title>
 	<style>
-	body {
-		font-family: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
-		font-size: 7pt;
-		letter-spacing: 0px;
-		font-stretch: ultra-condensed;
-	}
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Helvetica Narrow', 'Arial Narrow', Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0;
+    font-stretch: ultra-condensed;
+}
+table {
+    width: 100%;
+}
+.main {
+    border-right: 2px solid black;
+}
+hr {
+    border: 1px solid black;
+}
+input[type='radio'] {
+    transform: scale(2);
+    margin-top: 10px;
+}
+input[type='button'], input[type='submit'], input[type='reset'] {
+    line-height: 0;
+    font-size: 80%;
+    border: solid 1px grey;
+    height: 100%;
+    background: white;
+    color: #333;
+    outline: 0;
+}
+input[type='button'] {
+    height: 122%;
+    width: 25px;
+    font-size: 1.5em;
+}
+input[type='number'] {
+    height: 30px;
+    width: 6em;
+    font-size: 15pt;
+}
+.counter {
+    height: 30px;
+    width: 3em;
+    font-size: 15pt;
+}
+.center td {
+    text-align: center;
+    vertical-align: middle;
+}
+.defcon {
+    width: calc(100% / 9);
+    height: 170px;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.constant {
+    height: 170px;
+}
 
-	table {
-		width: 100%;
-	}
-
-	td.main {
-		border-right: 2px solid black;
-	}
-
-	hr {
-		border: 1px solid black;
-	}
-
-	input[type='radio'] {
-		transform: scale(2);
-        margin-top: 10px;
-	}
-
-	input[type='button'] {
-		width: 25px;
-		height: 100%;
-	}
-
-	input[type='number'] {
-		height: 30px;
-		width: 6em;
-		font-size: 15pt;
-	}
-
-	input[type='number'].counter {
-		height: 30px;
-		width: 3em;
-		font-size: 15pt;
-	}
-
-	.center td {
-		text-align:center;
-		vertical-align:middle;
-	}
-
-	.defcon {
-		width: calc(100% / 9);
-		height: 170px;
-	}
-
-	img {
-		max-width:100%;
-		max-height:100%;
-	}
-
-	.constant {
-		height: 170px;
-	}
 	</style>
 	<script>
 		var confirmOnPageExit = function (e) {
