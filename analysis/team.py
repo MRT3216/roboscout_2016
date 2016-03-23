@@ -46,20 +46,22 @@ def printdata(teamnum):
 	print "{} in auton".format(colored(teamobj.auton_high,'magenta'))
 
 	print colored("==== Auton stats: ====",'red')
-	print "{} low goals, {} high gloals".format(teamobj.auton_low,teamobj.auton_high)
-	print "started with a boulder {} times ({}% of matches)".format(teamobj.auton_boulders,teamobj.auton_boulders / float(teamobj.num_matches) * 100)
-	print "reached {} times ({}% of matches)".format(teamobj.auton_reaches,teamobj.auton_reaches / float(teamobj.num_matches) * 100)
-	print "crossed {} times ({}% of matches)".format(teamobj.auton_breaches,teamobj.auton_breaches / float(teamobj.num_matches) * 100)
+	print "{} low goals, {} high gloals".format(colored(teamobj.auton_low,'magenta'),colored(teamobj.auton_high,'magenta'))
+	print "started with a boulder {} times ({}% of matches)".format(colored(teamobj.auton_boulders,'magenta'),colored(teamobj.auton_boulders / float(teamobj.num_matches) * 100,'magenta'))
+	print "reached {} times ({}% of matches)".format(colored(teamobj.auton_reaches,'magenta'),colored(teamobj.auton_reaches / float(teamobj.num_matches) * 100,'magenta'))
+	print "crossed {} times ({}% of matches)".format(colored(teamobj.auton_breaches,'magenta'),colored(teamobj.auton_breaches / float(teamobj.num_matches) * 100,'magenta'))
 
 	print colored("==== Tower stats: ====",'red')
-	print "challenged tower {} times ({}% of matches)".format(teamobj.tower_challenge,teamobj.tower_challenge/float(teamobj.num_matches) * 100)
-	print "climbed tower {} times ({}% of matches)".format(teamobj.tower_scale,teamobj.tower_scale/float(teamobj.num_matches) * 100)
-	print "partially climbed tower {} times ({}% of matches)".format(teamobj.tower_scale_partial,teamobj.tower_scale_partial/float(teamobj.num_matches) * 100)
-	print "succeeded climbing tower {}% of attempts".format(teamobj.tower_scale_prec)
+	print "challenged tower {} times ({}% of matches)".format(colored(teamobj.tower_challenge,'magenta'),colored(teamobj.tower_challenge/float(teamobj.num_matches) * 100,'magenta'))
+	print "climbed tower {} times ({}% of matches)".format(colored(teamobj.tower_scale,'magenta'),colored(teamobj.tower_scale/float(teamobj.num_matches) * 100,'magenta'))
+	print "partially climbed tower {} times ({}% of matches)".format(colored(teamobj.tower_scale_partial,'magenta'),colored(teamobj.tower_scale_partial/float(teamobj.num_matches) * 100,'magenta'))
+	print "succeeded climbing tower {}% of attempts".format(colored(teamobj.tower_scale_prec,'magenta'))
 
 if len(sys.argv) != 2 and  __name__ == '__main__':
 	print "usage: python {} <team_number>".format(sys.argv[0])
 	sys.exit(1)
 elif __name__ == '__main__':
 	teamnum = sys.argv[1]
+	print colored("\nBEGIN DATA PRINTOUT",'blue','on_red',attrs=['bold'])
 	printdata(teamnum)
+	print colored("\nEND DATA PRINTOUT",'blue','on_red',attrs=['bold'])

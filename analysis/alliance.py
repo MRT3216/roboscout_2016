@@ -16,7 +16,7 @@ def pad(i,l):
 def printdata(teams):
 	allianceobj = analysis.analyzealliance(teams)
 
-	print colored("\nTEAMS {}".format(','.join(teams)),'red','on_green',attrs=['bold'])
+	print colored("\nALLIANCE {}".format(','.join(teams)),'red','on_green',attrs=['bold'])
 
 	print colored("==== Defense ratings: ====",'red')
 	defs_sorted = sorted(allianceobj.defense_speed_normalized, key=allianceobj.defense_speed_normalized.get)
@@ -36,9 +36,13 @@ def printdata(teams):
 		print "Class {}: {} at {}%".format(colored(analysis.defs_class[i].upper(),'red'),colored(i,'blue'),colored(int(allianceobj.defense_speed_normalized[i]*10)/10.0,'cyan'))
 
 
-
-if __name__ == '__main__':
+if len(sys.argv) != 2 and __name__ == '__main__':
+	print "usage: python {} <team1>,<team2>,<team3>".format(sys.argv[0])
+	sys.exit(1)
+elif __name__ == '__main__':
 	teams = sys.argv[1].split(',')
+	print colored("\nBEGIN DATA PRINTOUT",'blue','on_red',attrs=['bold'])
 	for i in teams:
 		team.printdata(int(i))
 	printdata(teams)
+	print colored("\nEND DATA PRINTOUT",'blue','on_red',attrs=['bold'])
