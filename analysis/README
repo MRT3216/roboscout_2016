@@ -8,3 +8,6 @@ python alliance.py <num1>,<num2>,<num3>...
 
 python match.py <red1>,<red2>,<red3>... <blue1>,<blue2>,<blue3>...
 	analyze two alliances against eachother
+
+python list.py
+	simply lists the teams in the database file in order of occurrence

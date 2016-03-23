@@ -55,7 +55,9 @@ autonboulder_ans text,
 autonreach_ans text,
 autonbreach_ans text,
 autonlow_count int,
-autonhigh_count int
+autonhigh_count int,
+
+notes text
 )"""
 
 DSCH_SHORT = []

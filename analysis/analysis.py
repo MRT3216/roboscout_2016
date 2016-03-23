@@ -5,6 +5,7 @@ fd = open('config.py','w');fd.write(open('../config.py','r').read());fd.close()
 import sqlite3
 from config import *
 from pprint import pprint
+import itertools
 
 '''
 conn = sqlite3.connect(DATABASE)
@@ -142,6 +143,39 @@ def analyzealliance(alist):
 		teams.append(analyzeteam(i))
 	allianceobj = alliance(alist)
 	allianceobj.teamobjs = teams
+	matches = []
+	for i in teams:
+		matches += i.matchdata
+	allianceobj.matchdata = matches
+	defense_speed_raw = {i:0 for i in defs}
+	defense_count = {i:0 for i in defs}
+	autondefenses = {i:0 for i in defs}
+
+	for i in matches:
+		## figure out their best defenses
+		for d in defs:
+			count = i.get(d+'_crosscount',0)
+			speed = i.get(d+'_def','what')
+			sm = {u'slow':1,u'fast':2,u'assist':0.5,u'alone':3}.get(speed,0) # speed multiplier
+			defense_speed_raw[d] += count*sm
+			defense_count[d] += count
+		## also think about auton defenses
+		autondefense = i.get('autonbreach_ans','none')
+		if str(autondefense) in defs:
+			defense_speed_raw[str(autondefense)] += 5
+			autondefenses[str(autondefense)] += 1
+			defense_count[str(autondefense)] += 1
+
+	## find the prevalance of teleop defenses
+	allianceobj.defense_speed_raw = defense_speed_raw
+	allianceobj.defenses_auton = autondefenses
+	allianceobj.defense_count = defense_count
+	maxdef = sorted(defense_speed_raw.values())[-1]
+	if maxdef != 0:
+		defense_speed = {d:(i/float(maxdef))*100 for (d,i) in zip(defense_speed_raw.keys(),defense_speed_raw.values())}
+	else:
+		defense_speed = {i:0 for i in defs}
+	allianceobj.defense_speed_normalized = defense_speed
 	return allianceobj
 
 def analyzematch(ared,ablue):
