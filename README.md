@@ -1,6 +1,11 @@
 roboscout
 -------
 
+Requirements:
+- Flask https://flask.pocoo.org/
+- termcolor https://pypi.python.org/pypi/termcolor
+- and of course Python 2.7
+
 
 How to use it:
 

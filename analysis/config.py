@@ -3,6 +3,8 @@
 
 DATABASE = "data/data.db"
 
+COLORS = True ## enable colored printing of output; disable if you see random characters
+
 LOGFILE = "gather-server.log"
 
 """

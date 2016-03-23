@@ -1,6 +1,13 @@
 import sys
 import analysis
 import itertools
+from config import *
+
+if COLORS:
+	from termcolor import colored
+else:
+	def colored(a,*_):
+		return a
 
 def pad(i,l):
 	return str(i)+' '*(l-len(str(i)))
@@ -8,14 +15,14 @@ def pad(i,l):
 def printdata(teamnum):
 	teamobj = analysis.analyzeteam(teamnum)
 
-	print "TEAM {}".format(teamobj.num)
+	print colored("\nTEAM {}".format(teamobj.num),'red','on_green',attrs=['bold'])
 
-	print "==== Defense ratings: ===="
+	print colored("==== Defense ratings: ====",'red')
 	defs_sorted = sorted(teamobj.defense_speed_normalized, key=teamobj.defense_speed_normalized.get)
 	for i in reversed(defs_sorted):
-		print pad(i,16) + pad(str(teamobj.defense_count[i]),5) + pad('('+str(int(teamobj.defense_speed_normalized[i]*10)/10.0)+'%)',9) + '#'*(int(teamobj.defense_speed_normalized[i]/2))
+		print colored(pad(i,16),'blue') + colored(pad(str(teamobj.defense_count[i]),5),'cyan') + colored(pad('('+str(int(teamobj.defense_speed_normalized[i]*10)/10.0)+'%)',9),'green') + '#'*(int(teamobj.defense_speed_normalized[i]/2))
 
-	print "==== Best choices for defense: ===="
+	print colored("==== Best choices for defense: ====",'red')
 	best_choices = []
 	best_choice_class = []
 	for i in defs_sorted:
@@ -25,26 +32,26 @@ def printdata(teamnum):
 			if len(best_choices) >= 4: ## only want the top 4 worst
 				break
 	for i in best_choices:
-		print "Class {}: {} at {}%".format(analysis.defs_class[i].upper(),i,int(teamobj.defense_speed_normalized[i]*10)/10.0)
+		print "Class {}: {} at {}%".format(colored(analysis.defs_class[i].upper(),'red'),colored(i,'blue'),colored(int(teamobj.defense_speed_normalized[i]*10)/10.0,'green'))
 
-	print "==== Offense stats: ===="
+	print colored("==== Offense stats: ====",'red')
 	print "---- Low goal: ----"
-	print "{} low goals made".format(teamobj.lowgoal_total + teamobj.auton_low)
-	print "average of {} per match".format(teamobj.lowgoal_avg)
-	print "{} in auton".format(teamobj.auton_low)
+	print "{} low goals made".format(colored(teamobj.lowgoal_total + teamobj.auton_low,'magenta'))
+	print "average of {} per match".format(colored(teamobj.lowgoal_avg,'magenta'))
+	print "{} in auton".format(colored(teamobj.auton_low,'magenta'))
 	print "---- High goal: ----"
-	print "{} high goals made, {} missed ({} total)".format(teamobj.highgoal_total + teamobj.auton_high,teamobj.highgoal_miss,teamobj.highgoal_total+teamobj.highgoal_miss+teamobj.auton_high)
-	print "average of {} per match".format(teamobj.highgoal_avg)
-	print "successful {}% of the time".format(int(teamobj.highgoal_prec*1000)/10.0)
-	print "{} in auton".format(teamobj.auton_high)
+	print "{} high goals made, {} missed ({} total)".format(colored(teamobj.highgoal_total + teamobj.auton_high,'magenta'),colored(teamobj.highgoal_miss,'magenta'),colored(teamobj.highgoal_total+teamobj.highgoal_miss+teamobj.auton_high,'magenta'))
+	print "average of {} per match".format(colored(teamobj.highgoal_avg,'magenta'))
+	print "successful {}% of the time".format(colored(int(teamobj.highgoal_prec*1000)/10.0,'magenta'))
+	print "{} in auton".format(colored(teamobj.auton_high,'magenta'))
 
-	print "==== Auton stats: ===="
+	print colored("==== Auton stats: ====",'red')
 	print "{} low goals, {} high gloals".format(teamobj.auton_low,teamobj.auton_high)
 	print "started with a boulder {} times ({}% of matches)".format(teamobj.auton_boulders,teamobj.auton_boulders / float(teamobj.num_matches) * 100)
 	print "reached {} times ({}% of matches)".format(teamobj.auton_reaches,teamobj.auton_reaches / float(teamobj.num_matches) * 100)
 	print "crossed {} times ({}% of matches)".format(teamobj.auton_breaches,teamobj.auton_breaches / float(teamobj.num_matches) * 100)
 
-	print "==== Tower stats: ===="
+	print colored("==== Tower stats: ====",'red')
 	print "challenged tower {} times ({}% of matches)".format(teamobj.tower_challenge,teamobj.tower_challenge/float(teamobj.num_matches) * 100)
 	print "climbed tower {} times ({}% of matches)".format(teamobj.tower_scale,teamobj.tower_scale/float(teamobj.num_matches) * 100)
 	print "partially climbed tower {} times ({}% of matches)".format(teamobj.tower_scale_partial,teamobj.tower_scale_partial/float(teamobj.num_matches) * 100)
