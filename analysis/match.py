@@ -15,6 +15,7 @@ def pad(i,l):
 
 def printdata(red,blue):
 	print colored("\nMATCH {} vs {}".format(','.join(red),','.join(blue)),'red','on_green',attrs=['bold'])
+	print "Note: this program is currently unimplemented for match-based analysis."
 
 
 if len(sys.argv) != 3 and __name__ == '__main__':
