@@ -1,5 +1,7 @@
 ## also a server...
 
+## note: this server is unimplemented...
+
 from flask import Flask,redirect,request,make_response,render_template
 from config import *
 import analysis
@@ -14,11 +16,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-	return render_template('listing.html')
+	return 'not implemented'
+	#return render_template('listing.html')
 
 @app.route('/team/<num>')
 def teampage(num):
-	pass
+	dat = 'not implemented'
+	return render_template('printout.html',printout=dat)
 
 @app.route('/match/<num>')
 def matchpage(num):

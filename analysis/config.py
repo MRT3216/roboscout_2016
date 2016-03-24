@@ -5,6 +5,8 @@ DATABASE = "data/data.db"
 
 COLORS = True ## enable colored printing of output; disable if you see random characters
 
+AUTOCOPY = False ## automatically copies the database from the gathering folder when an analysis program is run
+
 LOGFILE = "gather-server.log"
 
 """

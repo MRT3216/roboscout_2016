@@ -1,11 +1,15 @@
 ## this file does all the magic
-import os,sys ## sync the config because python is being dumb
-fd = open('config.py','w');fd.write(open('../config.py','r').read());fd.close()
+import os,sys,shutil
+## sync the config because python is being dumb
+shutil.copyfile('../config.py','./config.py')
 
 import sqlite3
 from config import *
 from pprint import pprint
 import itertools
+
+if AUTOCOPY:
+	shutil.copyfile('../gathering/'+DATABASE,'./'+DATABASE)
 
 '''
 conn = sqlite3.connect(DATABASE)
