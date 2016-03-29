@@ -3,6 +3,10 @@
 
 DATABASE = "data/data.db"
 
+COLORS = True ## enable colored printing of output; disable if you see random characters
+
+AUTOCOPY = False ## automatically copies the database from the gathering folder when an analysis program is run
+
 LOGFILE = "gather-server.log"
 
 """
@@ -55,7 +59,9 @@ autonboulder_ans text,
 autonreach_ans text,
 autonbreach_ans text,
 autonlow_count int,
-autonhigh_count int
+autonhigh_count int,
+
+notes text
 )"""
 
 DSCH_SHORT = []
